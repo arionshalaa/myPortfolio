@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import {Title} from '@angular/platform-browser';
 
 @Component({
@@ -8,8 +8,17 @@ import {Title} from '@angular/platform-browser';
 })
 export class ResumeComponent {
   
-  constructor(private titleService: Title){
+  constructor(private titleService: Title, private renderer: Renderer2){
     this.titleService.setTitle('Arion Shala - Resume');
 
+  }
+
+  downloadResume(){
+    const link = this.renderer.createElement('a');
+    link.setAttribute('target', 'blank');
+    link.setAttribute('href', '../../assets/CV - Arion Shala.pdf');
+    link.setAttribute('download', 'CV - Arion Shala.pdf');
+    link.click();
+    link.remove();
   }
 }
